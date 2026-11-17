@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- control deck: a 2 x 2 grid of tiles -->
+    <path android:pathData="M31,25h14a6,6 0,0 1,6 6v14a6,6 0,0 1,-6 6h-14a6,6 0,0 1,-6 -6v-14a6,6 0,0 1,6 -6z" android:fillColor="#2DD4BF" />
+    <path android:pathData="M63,25h14a6,6 0,0 1,6 6v14a6,6 0,0 1,-6 6h-14a6,6 0,0 1,-6 -6v-14a6,6 0,0 1,6 -6z" android:fillColor="#76B900" />
+    <path android:pathData="M31,57h14a6,6 0,0 1,6 6v14a6,6 0,0 1,-6 6h-14a6,6 0,0 1,-6 -6v-14a6,6 0,0 1,6 -6z" android:fillColor="#A78BFA" />
+    <path android:pathData="M63,57h14a6,6 0,0 1,6 6v14a6,6 0,0 1,-6 6h-14a6,6 0,0 1,-6 -6v-14a6,6 0,0 1,6 -6z" android:fillColor="#F59E0B" />
+</vector>
