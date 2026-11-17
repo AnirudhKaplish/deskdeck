@@ -81,7 +81,7 @@ Setup downloads the latest release, checks its SHA-256 checksum, offers missing 
 and opens the settings at <http://127.0.0.1:8765>. It can also install the Android app over USB.
 Run setup again to update or repair the installation while keeping settings and pairings.
 
-> **Windows signing:** release agents are currently unsigned while the SignPath Foundation application is pending.
+> **Windows signing:** release agents are currently unsigned.
 > SmartScreen or antivirus software may warn or block them. See the [code signing policy](#code-signing-policy)
 > and [installation warnings](docs/SETUP.md#quick-start). USB debugging should be authorized only on computers you trust.
 
@@ -195,16 +195,10 @@ Contributions are welcome; start with [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Code signing policy
 
-Free code signing provided by [SignPath.io](https://about.signpath.io/), certificate by
-[SignPath Foundation](https://signpath.org/).
-
-- **Windows agent:** the SignPath Foundation application is pending; releases are unsigned until approved.
-  The intended signing target is `DeskDeckAgent.exe` in the `win-x64` release zip, built by the
-  [release workflow](.github/workflows/release.yml). Every signing request requires manual approval.
+- **Windows agent:** releases are currently unsigned. Every release publishes SHA-256 checksums and a build-provenance attestation.
   Bundled runtime and library notices are in [THIRD-PARTY-NOTICES.txt](agent/DeskDeck.Agent/THIRD-PARTY-NOTICES.txt).
-- **Android app:** release APKs use the project's own signing key, independently of SignPath.
-- **Team roles:** committer, reviewer and signing approver: [AnirudhKaplish](https://github.com/AnirudhKaplish).
-  Pull requests from other contributors are reviewed before merging.
+- **Android app:** release APKs are signed with the project's own signing key.
+- **Maintainer:** [AnirudhKaplish](https://github.com/AnirudhKaplish). Pull requests are reviewed before merging.
 - **Privacy:** see the [privacy policy](PRIVACY.md).
 
 ## Star History

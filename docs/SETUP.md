@@ -76,12 +76,12 @@ curl -fsSL https://raw.githubusercontent.com/AnirudhKaplish/deskdeck/main/setup.
 
 <details><summary><b>Before you run it: warnings</b></summary>
 
-- **The Windows agent is not code-signed yet.** The [SignPath Foundation](../README.md#code-signing-policy) application is pending.
+- **The Windows agent is not code-signed yet.** See the [code signing policy](../README.md#code-signing-policy).
   Windows SmartScreen or an antivirus may warn about a new, unsigned program, and some antivirus engines have flagged
   it ([#69](https://github.com/AnirudhKaplish/deskdeck/issues/69)). Setup only installs a file that matches the release
   checksum. If your antivirus removes `DeskDeckAgent.exe`, setup says so; restore it from quarantine or report it.
 - **Smart App Control** (Windows 11) blocks programs that are neither signed nor known to Microsoft. The agent is
-  not code-signed yet (signing through SignPath Foundation is pending, [#56](https://github.com/AnirudhKaplish/deskdeck/issues/56)),
+  not code-signed yet (see the [code signing policy](../README.md#code-signing-policy)),
   so with Smart App Control on, Windows refuses to start it: "An Application Control policy has blocked this file"
   ([#69](https://github.com/AnirudhKaplish/deskdeck/issues/69)). Setup warns you first, still installs it, and explains
   if Windows blocks it. Please keep Smart App Control on: on older Windows builds it cannot be turned back on without

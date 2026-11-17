@@ -320,8 +320,8 @@ function Install-DeskDeck {
     try { $smartAppControl = [int](Get-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Control\CI\Policy' -ErrorAction Stop).VerifiedAndReputablePolicyState } catch { }
     if ($smartAppControl -eq 1) {
         Write-Caution 'Smart App Control is on. It blocks programs that are neither signed nor known to Microsoft, and'
-        Write-Caution 'DeskDeckAgent.exe is not code-signed yet (signing through SignPath Foundation is pending:'
-        Write-Caution "https://github.com/$Repo/issues/56), so Windows will probably refuse to start it. Setup still installs it."
+        Write-Caution 'DeskDeckAgent.exe is not code-signed yet (releases are unsigned:'
+        Write-Caution "https://github.com/$Repo#code-signing-policy), so Windows will probably refuse to start it. Setup still installs it."
         Write-Caution 'Please keep Smart App Control on: on older Windows builds it cannot be turned back on without resetting Windows.'
     } elseif ($smartAppControl -eq 2) {
         Write-Caution 'Smart App Control is in evaluation mode: it blocks nothing yet. If Windows turns it on later, it will block'
@@ -349,7 +349,7 @@ function Install-DeskDeck {
         Get-Download "$base/$zipName" $zip
         Assert-Checksum $zip $sums
         Test-Provenance $zip
-        Write-Info 'The agent is not code-signed yet (the SignPath Foundation application is pending). Windows SmartScreen'
+        Write-Info 'The agent is not code-signed yet (releases are unsigned). Windows SmartScreen'
         Write-Info 'or an antivirus can warn about new unsigned programs; the checksum above shows that this is the file'
         Write-Info "GitHub built from the public source. Details: https://github.com/$Repo/issues/69"
 

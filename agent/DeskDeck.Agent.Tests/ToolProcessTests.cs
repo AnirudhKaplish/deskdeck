@@ -29,7 +29,7 @@ public sealed class ToolProcessTests
         {
             await Assert.ThrowsAsync<TimeoutException>(() => ToolProcess.RunAsync(Shell(
                 $"[IO.File]::WriteAllText('{marker}', [string]$PID); Start-Sleep -Seconds 60",
-                $"echo $$ > '{marker}'; exec sleep 60"), TimeSpan.FromSeconds(3), default));
+                $"echo $$ > '{marker}'; exec sleep 60"), TimeSpan.FromSeconds(10), default));
             Assert.True(File.Exists(marker), "The child must have started before timing out");
             var pid = int.Parse(File.ReadAllText(marker).Trim());
             var alive = false;

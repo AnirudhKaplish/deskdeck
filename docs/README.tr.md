@@ -74,7 +74,7 @@ curl -fsSL https://raw.githubusercontent.com/AnirudhKaplish/deskdeck/main/setup.
 
 Kurulum en son sürümü indirir, SHA-256 sağlama toplamını doğrular, eksik bağımlılıkları ve oturum açılışında başlatmayı sunar ve <http://127.0.0.1:8765> adresinde ayarları açar. Android uygulamasını USB üzerinden de yükleyebilir. Ayarları ve eşleştirmeleri koruyarak güncellemek veya onarmak için kurulumu tekrar çalıştırabilirsiniz.
 
-> **Windows imzalama:** SignPath Foundation başvurusu beklemedeyken sürüm ajanları şu anda imzasızdır. SmartScreen veya antivirüs yazılımları uyarı verebilir. Bkz. [kod imzalama politikası](#kod-imzalama-politikası) ve [kurulum uyarıları](SETUP.md#quick-start). USB hata ayıklamaya yalnızca güvendiğiniz bilgisayarlarda izin verin.
+> **Windows imzalama:** Sürüm ajanları şu anda imzasızdır. SmartScreen veya antivirüs yazılımları uyarı verebilir. Bkz. [kod imzalama politikası](#kod-imzalama-politikası) ve [kurulum uyarıları](SETUP.md#quick-start). USB hata ayıklamaya yalnızca güvendiğiniz bilgisayarlarda izin verin.
 
 Çalıştırmadan önce betikleri inceleyin: [Windows](../setup.ps1) · [Linux/macOS](../setup.sh).
 [Kurulum kılavuzu](SETUP.md) seçenekleri, bağımlılıkları, kurulum yollarını, sorun gidermeyi ve kaldırmayı kapsar.
@@ -148,11 +148,9 @@ python tools/demo-server.py
 
 ## Kod imzalama politikası
 
-Ücretsiz kod imzalama [SignPath.io](https://about.signpath.io/) tarafından, sertifika ise [SignPath Foundation](https://signpath.org/) tarafından sağlanmaktadır.
-
-- **Windows ajanı:** SignPath Foundation başvurusu beklemededir; onaylanana kadar sürümler imzasızdır.
-- **Android uygulaması:** Sürüm APK'ları SignPath'ten bağımsız olarak projenin kendi imzalama anahtarını kullanır.
-- **Ekip rolleri:** Commit, inceleme ve imzalama onaylayıcısı: [AnirudhKaplish](https://github.com/AnirudhKaplish).
+- **Windows ajanı:** Sürümler şu anda imzasızdır; her sürüm SHA-256 sağlama toplamlarıyla yayımlanır.
+- **Android uygulaması:** Sürüm APK'ları projenin kendi imzalama anahtarıyla imzalanır.
+- **Bakımcı:** [AnirudhKaplish](https://github.com/AnirudhKaplish).
 - **Gizlilik:** Bkz. [gizlilik politikası](../PRIVACY.md).
 
 
