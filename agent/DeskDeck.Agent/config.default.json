@@ -37,7 +37,12 @@
     { "template": "work" },
     { "template": "system" },
     { "template": "procs" },
-    { "template": "deck" },
+    { "id": "deck", "title": "Shortcuts", "icon": "\ud83c\udf9b\ufe0f", "widgets": [
+      { "id": "shortcuts-apps", "type": "shortcuts", "x": 0, "y": 0, "w": 12, "h": 2, "options": { "columns": 6, "ids": ["claude-code", "terminal", "explorer", "vscode", "browser", "spotify"] } },
+      { "id": "bright-phone", "type": "brightbar", "x": 0, "y": 2, "w": 12, "h": 1, "options": { "target": "phone" } },
+      { "id": "bright-pc", "type": "brightbar", "x": 0, "y": 3, "w": 12, "h": 1, "options": { "target": "pc" } },
+      { "id": "shortcuts-system", "type": "shortcuts", "x": 0, "y": 4, "w": 12, "h": 2, "options": { "columns": 6, "ids": ["settings", "snip", "taskmgr", "mute", "monitoroff", "lock"] } }
+    ] },
     { "template": "music" },
     { "template": "focus", "enabled": false },
     { "template": "world", "enabled": false }
@@ -46,17 +51,17 @@
   // Shortcut keys. The phone only sends the "id"; commands live in this file only.
   // cmd: a program, a URL / shell: / ms-settings: address, or builtin:lock | builtin:monitor-off | builtin:mute
   "shortcuts": [
-    { "id": "terminal",   "label": "Terminal",     "icon": "\u2328\ufe0f", "color": "#4b5563", "cmd": "wt.exe" },
-    { "id": "explorer",   "label": "Files",        "icon": "\ud83d\udcc1", "color": "#e5b84b", "cmd": "explorer.exe" },
-    { "id": "vscode",     "label": "VS Code",      "icon": "\ud83d\udcdd", "color": "#2f80ed", "cmd": "shell:AppsFolder\\Microsoft.VisualStudioCode" },
-    { "id": "browser",    "label": "Browser",      "icon": "\ud83c\udf10", "color": "#0ea5e9", "cmd": "https://github.com" },
-    { "id": "spotify",    "label": "Spotify",      "icon": "\ud83c\udfa7", "color": "#1db954", "cmd": "shell:AppsFolder\\SpotifyAB.SpotifyMusic_zpdnekdrzrea0!Spotify" },
-    { "id": "calc",       "label": "Calculator",   "icon": "\ud83e\uddee", "color": "#64748b", "cmd": "calc.exe" },
-    { "id": "settings",   "label": "Settings",     "icon": "\u2699\ufe0f", "color": "#94a3b8", "cmd": "ms-settings:" },
-    { "id": "snip",       "label": "Snip",         "icon": "\u2702\ufe0f", "color": "#14b8a6", "cmd": "ms-screenclip:" },
-    { "id": "taskmgr",    "label": "Task Manager", "icon": "\ud83d\udcca", "color": "#22c55e", "cmd": "taskmgr.exe" },
-    { "id": "mute",       "label": "Mute",         "icon": "\ud83d\udd07", "color": "#f59e0b", "cmd": "builtin:mute" },
-    { "id": "monitoroff", "label": "Screen Off",   "icon": "\ud83c\udf19", "color": "#6366f1", "cmd": "builtin:monitor-off" },
-    { "id": "lock",       "label": "Lock",         "icon": "\ud83d\udd12", "color": "#ef4444", "cmd": "builtin:lock" }
+    { "id": "claude-code", "label": "Claude Code",  "icon": "\ud83e\udd16", "color": "#d97757", "cmd": "powershell.exe", "args": "-NoExit -Command claude" },
+    { "id": "terminal",   "label": "Terminal",     "icon": "\u2328\ufe0f", "color": "#64748b", "cmd": "wt.exe" },
+    { "id": "explorer",   "label": "Files",        "icon": "\ud83d\udcc1", "color": "#64748b", "cmd": "explorer.exe" },
+    { "id": "vscode",     "label": "VS Code",      "icon": "\ud83d\udcdd", "color": "#64748b", "cmd": "shell:AppsFolder\\Microsoft.VisualStudioCode" },
+    { "id": "browser",    "label": "Browser",      "icon": "\ud83c\udf10", "color": "#64748b", "cmd": "https://github.com" },
+    { "id": "spotify",    "label": "Spotify",      "icon": "\ud83c\udfa7", "color": "#64748b", "cmd": "shell:AppsFolder\\SpotifyAB.SpotifyMusic_zpdnekdrzrea0!Spotify" },
+    { "id": "settings",   "label": "Settings",     "icon": "\u2699\ufe0f", "color": "#64748b", "cmd": "ms-settings:" },
+    { "id": "snip",       "label": "Snip",         "icon": "\u2702\ufe0f", "color": "#64748b", "cmd": "ms-screenclip:" },
+    { "id": "taskmgr",    "label": "Task Mgr",     "icon": "\ud83d\udcca", "color": "#64748b", "cmd": "taskmgr.exe" },
+    { "id": "mute",       "label": "Mute",         "icon": "\ud83d\udd07", "color": "#64748b", "cmd": "builtin:mute" },
+    { "id": "monitoroff", "label": "Screen Off",   "icon": "\ud83c\udf19", "color": "#64748b", "cmd": "builtin:monitor-off" },
+    { "id": "lock",       "label": "Lock",         "icon": "\ud83d\udd12", "color": "#64748b", "cmd": "builtin:lock" }
   ]
 }
