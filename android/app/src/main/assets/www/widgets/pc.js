@@ -702,6 +702,37 @@ W.volume = {
   },
 };
 
+// Brightness slider for the phone's own screen or the computer's built-in display (drag to set).
+W.brightbar = {
+  needs: [],
+  create(box, { o }) {
+    const target = o.target === 'phone' ? 'phone' : 'pc';
+    const fill = h('i'), bar = h('div', 'vb', fill), pct = h('div', 'vb-v', '50%');
+    box.append(h('div', 'w-title', o.title || (target === 'phone' ? 'Phone brightness' : 'Screen brightness')), h('div', 'vb-row', bar, pct));
+    let dragging = false, timer = 0;
+    const vertical = () => box.clientHeight > box.clientWidth * 1.15;
+    const paint = (v) => {
+      box.classList.toggle('vert', vertical());
+      fill.style[vertical() ? 'height' : 'width'] = v + '%';
+      fill.style[vertical() ? 'width' : 'height'] = '100%';
+      pct.textContent = v + '%';
+    };
+    paint(Number(o.start) || 50);
+    const fromPointer = (e) => {
+      const r = bar.getBoundingClientRect();
+      const f = vertical() ? 1 - (e.clientY - r.top) / r.height : (e.clientX - r.left) / r.width;
+      const v = Math.round(Math.max(0.02, Math.min(1, f)) * 100);
+      paint(v);
+      clearTimeout(timer);
+      timer = setTimeout(() => api(`/brightness?target=${target}&level=${v}`, 'POST', 9000).catch(() => {}), 120);
+    };
+    bar.addEventListener('pointerdown', (e) => { dragging = true; bar.setPointerCapture(e.pointerId); fromPointer(e); });
+    bar.addEventListener('pointermove', (e) => { if (dragging) fromPointer(e); });
+    bar.addEventListener('pointerup', () => setTimeout(() => (dragging = false), 300));
+    return { update() {} };
+  },
+};
+
 // The agent's automation rules: which hold right now, and a button to pause them all for an hour.
 const RULE_WHEN = { 'session-waiting': '✳️', 'session-busy': '⚙️', 'media-playing': '🎵', 'process-running': '🪟', 'mic-in-use': '🎙️', 'camera-in-use': '📷',
   'obs-live': '🔴', 'calendar-event': '📆', 'cpu-above': '🔥', idle: '🌙', time: '🕙', push: '📡', 'quota-above': '🎯', 'review-requested': '👀',
