@@ -4,8 +4,8 @@ body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="wa
   --card: linear-gradient(160deg, rgba(255,255,255,.085), rgba(255,255,255,.025));
   --card-hi: rgba(255,255,255,.11);
   --line: rgba(255,255,255,.12);
-  --muted: #a39fbd;
-  --dim: #6c6788;
+  --muted: #c4bfdc;
+  --dim: #8e89ab;
   --cpu: #5eead4; --gpu: #bef264; --ram: #c4b5fd; --net: #fdba74; --up: #7dd3fc;
   --ambient: 167, 139, 250;
   background: var(--bg);
@@ -13,7 +13,7 @@ body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="wa
 body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="warm"]):not([data-theme="graphite"])::before {
   background:
     radial-gradient(55% 70% at 85% 8%, rgba(139, 92, 246, .34), transparent 70%),
-    radial-gradient(50% 65% at 8% 95%, rgba(45, 212, 191, .24), transparent 70%),
+    radial-gradient(50% 65% at 8% 95%, rgba(45, 212, 191, .12), transparent 70%),
     radial-gradient(40% 50% at 55% 60%, rgba(244, 114, 182, .12), transparent 75%);
   animation: aurora-drift 40s ease-in-out infinite alternate;
 }
@@ -22,7 +22,7 @@ body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="wa
 
 body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="warm"]):not([data-theme="graphite"]) .card {
   background:
-    linear-gradient(160deg, rgba(255,255,255,.09), rgba(255,255,255,.02)) padding-box,
+    linear-gradient(165deg, rgba(34, 24, 70, .78), rgba(14, 10, 32, .86)) padding-box,
     linear-gradient(150deg, rgba(196,181,253,.55), rgba(255,255,255,.06) 40%, rgba(94,234,212,.4)) border-box;
   border: 1px solid transparent;
   border-radius: clamp(14px, 9cqmin, 26px);
@@ -37,3 +37,19 @@ body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="wa
 }
 .clock .sec, .clock .ap { -webkit-text-fill-color: var(--muted); }
 body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="warm"]):not([data-theme="graphite"]) .dot.on { background: #5eead4; box-shadow: 0 0 10px rgba(94, 234, 212, .8); }
+
+/* Contrast pass: the main value of every tile carries its metric colour; labels and sub-lines are easier to read. */
+body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="warm"]):not([data-theme="graphite"]) .t-val b, body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="warm"]):not([data-theme="graphite"]) .s-main b { color: color-mix(in srgb, var(--c, var(--text)) 55%, #fff); text-shadow: 0 0 18px color-mix(in srgb, var(--c, transparent) 45%, transparent); }
+body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="warm"]):not([data-theme="graphite"]) .g-val { color: color-mix(in srgb, var(--qc, var(--q, #fff)) 40%, #fff); }
+body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="warm"]):not([data-theme="graphite"]) .t-sub, body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="warm"]):not([data-theme="graphite"]) .s-name, body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="warm"]):not([data-theme="graphite"]) .g-sub, body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="warm"]):not([data-theme="graphite"]) .m-row { color: #cfc9e6; }
+body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="warm"]):not([data-theme="graphite"]) .m-row span:last-child, body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="warm"]):not([data-theme="graphite"]) .chip { color: #f4f1ff; }
+body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="warm"]):not([data-theme="graphite"]) .chip { background: rgba(167, 139, 250, .18); }
+body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="warm"]):not([data-theme="graphite"]) .track { background: rgba(255, 255, 255, .14); }
+body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="warm"]):not([data-theme="graphite"]) .w-stat canvas { opacity: .85; }
+/* Shortcut keys: a deep base with a clear colour wash, so every key reads as its own colour. */
+body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="warm"]):not([data-theme="graphite"]) .key {
+  background: linear-gradient(160deg, color-mix(in srgb, var(--k) 46%, #120c26), color-mix(in srgb, var(--k) 14%, #0c0818));
+  border: 1px solid color-mix(in srgb, var(--k) 70%, #fff 8%);
+  box-shadow: 0 6px 16px rgba(6, 3, 18, .5), inset 0 1px 0 rgba(255, 255, 255, .14);
+}
+body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="warm"]):not([data-theme="graphite"]) .key .k-label { color: #fff; font-weight: 600; }
