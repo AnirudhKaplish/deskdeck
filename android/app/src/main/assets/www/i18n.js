@@ -216,7 +216,7 @@
       's.general.lead': 'Weather, night mode, display behaviour and the phone connection.',
       's.weather.title': 'Weather',
       's.weather.searchCity': 'Search for a city',
-      's.weather.searchPlaceholder': 'e.g. Tallinn, Berlin…',
+      's.weather.searchPlaceholder': 'e.g. Delhi, Mumbai…',
       's.weather.searchBtn': 'Search',
       's.weather.displayName': 'Display name',
       's.weather.lat': 'Latitude',

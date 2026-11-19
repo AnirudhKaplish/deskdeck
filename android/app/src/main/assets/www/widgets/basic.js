@@ -778,7 +778,7 @@ W.button = {
 W.worldclock = {
   needs: ['tick'],
   create(box, { o }) {
-    const zones = (Array.isArray(o.zones) && o.zones.length ? o.zones : ['Tallinn=Europe/Tallinn', 'Istanbul=Europe/Istanbul', 'London=Europe/London', 'New York=America/New_York', 'Tokyo=Asia/Tokyo'])
+    const zones = (Array.isArray(o.zones) && o.zones.length ? o.zones : ['Delhi=Asia/Kolkata', 'Dubai=Asia/Dubai', 'London=Europe/London', 'New York=America/New_York', 'Tokyo=Asia/Tokyo'])
       .map((z) => { const i = z.indexOf('='); return i > 0 ? [z.slice(0, i).trim(), z.slice(i + 1).trim()] : [z.split('/').pop().replace(/_/g, ' '), z.trim()]; });
     const items = zones.map(([name, tz]) => {
       let fmt = null;
