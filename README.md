@@ -34,6 +34,16 @@ One agent can serve several phones, each with its own layout.
 
 <p align="center"><img src="docs/screenshots/aurora-panel-2.png" width="900" alt="A dashboard page with gauges, now playing and a grid of shortcut buttons"></p>
 
+## On a real PC
+
+Not mock-ups: DeskDeck running on a Windows laptop with live data.
+
+| Home | System |
+|---|---|
+| ![Home page with clock, weather, now playing, thermal status and live metric tiles](docs/screenshots/pc-home.jpg) | ![System page with processor, graphics, memory and network charts](docs/screenshots/pc-system.jpg) |
+
+![The layout editor with the page list and a drag-and-drop grid](docs/screenshots/pc-editor.jpg)
+
 ## Why you might want one
 
 | | |
