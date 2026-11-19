@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.17 — 2026-11-19
+
+- The GitHub star popup is removed.
+
 ## 0.9.16 — 2026-11-19
 
 **Readability**
@@ -16,9 +20,6 @@
   `tools/make-icon.ps1` is replaced by `tools/make-icon.py`.
 - Rewritten README.
 
-**New**
-- A one-time popup on Windows asks for a GitHub star once the phone connects. It checks through your own GitHub CLI when
-  signed in and stays quiet if you already starred. See the privacy policy.
 
 **New widget**
 - **Dictation**: tap the microphone and speak, and the text is typed into the app in front on the PC. The phone's own

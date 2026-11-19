@@ -13,7 +13,7 @@
     <Product>DeskDeck</Product>
     <Company>DeskDeck</Company>
     <Description>DeskDeck desktop agent: feeds the DeskDeck Android desk panel over USB or Wi-Fi.</Description>
-    <Version>0.9.16</Version>
+    <Version>0.9.17</Version>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
   </PropertyGroup>
 
