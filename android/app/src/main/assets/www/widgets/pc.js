@@ -702,33 +702,35 @@ W.volume = {
   },
 };
 
-// Brightness slider for the phone's own screen or the computer's built-in display (drag to set).
+// Brightness slider for the phone's own screen or the computer's built-in display: one slim row, drag to set.
 W.brightbar = {
   needs: [],
   create(box, { o }) {
     const target = o.target === 'phone' ? 'phone' : 'pc';
-    const fill = h('i'), bar = h('div', 'vb', fill), pct = h('div', 'vb-v', '50%');
-    box.append(h('div', 'w-title', o.title || (target === 'phone' ? 'Phone brightness' : 'Screen brightness')), h('div', 'vb-row', bar, pct));
-    let dragging = false, timer = 0;
-    const vertical = () => box.clientHeight > box.clientWidth * 1.15;
+    const name = o.title || (target === 'phone' ? 'Phone' : 'Laptop');
+    const fill = h('i'), thumb = h('b'), bar = h('div', 'bb-track', fill, thumb), pct = h('div', 'bb-v', '--');
+    box.append(h('div', 'bb-ico', target === 'phone' ? '📱' : '💻'), h('div', 'bb-name', name), bar, pct);
+    let dragging = false, timer = 0, failed = false;
     const paint = (v) => {
-      box.classList.toggle('vert', vertical());
-      fill.style[vertical() ? 'height' : 'width'] = v + '%';
-      fill.style[vertical() ? 'width' : 'height'] = '100%';
+      fill.style.width = v + '%';
+      thumb.style.left = `calc(${v}% - ${v * 0.2}px)`;
       pct.textContent = v + '%';
     };
-    paint(Number(o.start) || 50);
+    const send = (v) => api(`/brightness?target=${target}&level=${v}`, 'POST', 12000)
+      .then(() => { box.classList.remove('bb-fail'); failed = false; })
+      .catch(() => { box.classList.add('bb-fail'); failed = true; });
     const fromPointer = (e) => {
       const r = bar.getBoundingClientRect();
-      const f = vertical() ? 1 - (e.clientY - r.top) / r.height : (e.clientX - r.left) / r.width;
-      const v = Math.round(Math.max(0.02, Math.min(1, f)) * 100);
+      const v = Math.round(Math.max(0.03, Math.min(1, (e.clientX - r.left) / r.width)) * 100);
       paint(v);
       clearTimeout(timer);
-      timer = setTimeout(() => api(`/brightness?target=${target}&level=${v}`, 'POST', 9000).catch(() => {}), 120);
+      timer = setTimeout(() => send(v), 150);
     };
     bar.addEventListener('pointerdown', (e) => { dragging = true; bar.setPointerCapture(e.pointerId); fromPointer(e); });
     bar.addEventListener('pointermove', (e) => { if (dragging) fromPointer(e); });
     bar.addEventListener('pointerup', () => setTimeout(() => (dragging = false), 300));
+    api(`/brightness?target=${target}`, 'GET', 12000).then((r) => { if (!dragging && r && Number.isFinite(r.level)) paint(r.level); else if (!dragging) paint(50); })
+      .catch(() => { box.classList.add('bb-fail'); paint(50); });
     return { update() {} };
   },
 };

@@ -506,7 +506,7 @@
     if (path.startsWith('/api/controls/command/') && method === 'POST') return json(await controlCommand(path.split('/').pop(), q));
     if (path === '/api/state') return json(state(q.has('ev') ? +q.get('ev') : null));
     if (path === '/api/config') return json({ version: cfgVersion(), config: publicConfig(await config()) });
-    if (path === '/api/brightness' && method === 'POST') return json({ level: +q.get('level') || 0 });
+    if (path === '/api/brightness') return json({ level: method === 'POST' ? (+q.get('level') || 0) : 60 });
     if (path === '/api/volume' && method === 'POST') {
       // the agent answers with the new volume state (AudioSnapshot)
       const op = q.get('op'), level = q.has('level') ? +q.get('level') : null;

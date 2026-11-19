@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.19 — 2026-11-19
+
+- **Brightness slider** redesigned as one slim row (12 wide, 1 tall) that starts at the screen's real brightness, and the
+  laptop display now actually changes (it used a call Windows rejects). A failed change shows a red "!".
+- The built-in Shortcuts page is a slimmer layout: app keys on top, a phone and a laptop brightness slider, system keys below.
+
 ## 0.9.18 — 2026-11-19
 
 - **Brightness slider** widget: drag to set the phone's screen (over USB) or the computer's built-in display (Windows laptops).

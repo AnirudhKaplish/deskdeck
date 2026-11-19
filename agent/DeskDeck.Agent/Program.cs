@@ -684,34 +684,53 @@ app.MapPost("/api/media/{action}", async (string action, long? ms, MediaMonitor 
 });
 
 // Brightness slider: target=phone sets the USB-connected phone's screen (adb), target=pc the computer's built-in display (Windows laptops; external monitors keep using the Display brightness widget).
-app.MapPost("/api/brightness", async (string? target, int level, AdbReverse adb, ConfigStore cfg) =>
+static async Task<(int Code, string Out)> RunBrightnessTool(string file, params string[] args)
 {
-    level = Math.Clamp(level, 0, 100);
+    var psi = new System.Diagnostics.ProcessStartInfo(file) { UseShellExecute = false, CreateNoWindow = true, RedirectStandardOutput = true, RedirectStandardError = true };
+    foreach (var a in args) psi.ArgumentList.Add(a);
+    using var pr = System.Diagnostics.Process.Start(psi)!;
+    var output = pr.StandardOutput.ReadToEndAsync();
+    var error = pr.StandardError.ReadToEndAsync();
+    using var cts = new CancellationTokenSource(10_000);
+    try { await pr.WaitForExitAsync(cts.Token); }
+    catch (OperationCanceledException) { try { pr.Kill(true); } catch { } return (-1, "timed out"); }
+    return (pr.ExitCode, (await output + await error).Trim());
+}
+
+app.MapMethods("/api/brightness", ["GET", "POST"], async (HttpRequest req, string? target, int? level, AdbReverse adb, ConfigStore cfg) =>
+{
     try
     {
         if (target == "phone")
         {
             var tool = AdbReverse.FindAdb(cfg.Get().AdbPath);
             if (tool is null || !adb.Connected) return Results.BadRequest(new { error = "no phone over USB" });
-            var raw = Math.Max(1, level * 255 / 100);
-            var psi = new System.Diagnostics.ProcessStartInfo(tool) { UseShellExecute = false, CreateNoWindow = true };
-            foreach (var a in new[] { "shell", "settings put system screen_brightness_mode 0 && settings put system screen_brightness " + raw }) psi.ArgumentList.Add(a);
-            using var pr = System.Diagnostics.Process.Start(psi)!;
-            await pr.WaitForExitAsync(new CancellationTokenSource(5000).Token);
-            return pr.ExitCode == 0 ? Results.Ok(new { level }) : Results.BadRequest();
+            if (req.Method == "GET")
+            {
+                var got = await RunBrightnessTool(tool, "shell", "settings get system screen_brightness");
+                return int.TryParse(got.Out.Trim(), out var raw) ? Results.Json(new { level = Math.Clamp((int)Math.Round(raw * 100 / 255.0), 1, 100) }) : Results.BadRequest(new { error = got.Out });
+            }
+            var value = Math.Max(1, Math.Clamp(level ?? 50, 0, 100) * 255 / 100);
+            var done = await RunBrightnessTool(tool, "shell", "settings put system screen_brightness_mode 0 && settings put system screen_brightness " + value);
+            return done.Code == 0 ? Results.Json(new { level }) : Results.BadRequest(new { error = done.Out });
         }
         if (target == "pc" && OperatingSystem.IsWindows())
         {
-            var psi = new System.Diagnostics.ProcessStartInfo("powershell.exe") { UseShellExecute = false, CreateNoWindow = true };
-            foreach (var a in new[] { "-NoProfile", "-NonInteractive", "-Command",
-                $"(Get-CimInstance -Namespace root/WMI -ClassName WmiMonitorBrightnessMethods).WmiSetBrightness(1,{level})" }) psi.ArgumentList.Add(a);
-            using var pr = System.Diagnostics.Process.Start(psi)!;
-            await pr.WaitForExitAsync(new CancellationTokenSource(8000).Token);
-            return pr.ExitCode == 0 ? Results.Ok(new { level }) : Results.BadRequest();
+            if (req.Method == "GET")
+            {
+                var got = await RunBrightnessTool("powershell.exe", "-NoProfile", "-NonInteractive", "-Command",
+                    "(Get-CimInstance -Namespace root/WMI -ClassName WmiMonitorBrightness -ErrorAction Stop | Select-Object -First 1).CurrentBrightness");
+                return int.TryParse(got.Out.Trim(), out var cur) ? Results.Json(new { level = Math.Clamp(cur, 0, 100) }) : Results.BadRequest(new { error = got.Out });
+            }
+            var v = Math.Clamp(level ?? 50, 0, 100);
+            var script = "$ErrorActionPreference='Stop'; try { $m = Get-CimInstance -Namespace root/WMI -ClassName WmiMonitorBrightnessMethods | Select-Object -First 1; " +
+                $"if (-not $m) {{ Write-Output 'this display has no brightness control'; exit 2 }}; Invoke-CimMethod -InputObject $m -MethodName WmiSetBrightness -Arguments @{{Timeout=[uint32]1;Brightness=[byte]{v}}} | Out-Null }} catch {{ Write-Output $_.Exception.Message; exit 1 }}";
+            var res = await RunBrightnessTool("powershell.exe", "-NoProfile", "-NonInteractive", "-Command", script);
+            return res.Code == 0 ? Results.Json(new { level = v }) : Results.BadRequest(new { error = res.Out });
         }
     }
-    catch { }
-    return Results.BadRequest();
+    catch (Exception ex) { return Results.BadRequest(new { error = ex.Message }); }
+    return Results.BadRequest(new { error = "unsupported target" });
 });
 
 app.MapPost("/api/volume", (int? level, string? op, AudioControl audio) =>
