@@ -46,6 +46,12 @@ header .gh:hover { border-color: var(--accent); }
 .card { background: linear-gradient(160deg, rgba(255,255,255,.08), rgba(255,255,255,.02)); border: 1px solid var(--line); border-radius: 22px; padding: 20px 22px; backdrop-filter: blur(12px); box-shadow: inset 0 1px 0 rgba(255,255,255,.07); }
 .card h3 { font-size: 15px; margin-bottom: 4px; }
 .card p { color: var(--muted); font-size: 14px; }
+.gallery { margin-top: 48px; }
+.gallery h2 { font-size: 20px; text-align: center; margin-bottom: 4px; }
+.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 20px; }
+.shots figure { margin: 0; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: rgba(255,255,255,.04); }
+.shots img { display: block; width: 100%; height: auto; }
+.shots figcaption { padding: 10px 14px; color: var(--muted); font-size: 13px; text-align: center; }
 .cta { margin-top: 44px; text-align: center; }
 .cta p { margin-bottom: 14px; }
 .cta code { overflow-wrap: anywhere; background: var(--panel); border: 1px solid var(--line); padding: 3px 8px; border-radius: 6px; font-size: 13px; }
@@ -88,6 +94,16 @@ footer { margin-top: 40px; text-align: center; color: var(--muted); font-size: 1
     <div class="card"><h3>Webhooks and rules</h3><p>Scripts, CI and Home Assistant push values and notifications with one <code>curl</code>; rules switch pages calmly when a call, music or a waiting AI session needs the screen.</p></div>
     <div class="card"><h3>USB or Wi-Fi, no cloud</h3><p>Over the USB cable, or over Wi-Fi / Tailscale with a pinned certificate and a key. No accounts, no telemetry: see the <a href="https://github.com/AnirudhKaplish/deskdeck/blob/main/PRIVACY.md">privacy policy</a>.</p></div>
   </div>
+
+  <section class="gallery">
+    <h2>On a real PC</h2>
+    <p class="hint">Not made-up data: DeskDeck running on a Windows laptop, shown in a browser window.</p>
+    <div class="shots">
+      <figure><img src="shots/pc-home.jpg" alt="The Home page: clock, weather, now playing, thermal status and live CPU, GPU, RAM and network tiles" loading="lazy"><figcaption>Home</figcaption></figure>
+      <figure><img src="shots/pc-system.jpg" alt="The System page: processor, graphics, memory and network charts" loading="lazy"><figcaption>System</figcaption></figure>
+      <figure><img src="shots/pc-editor.jpg" alt="The layout editor with the page list and drag-and-drop grid" loading="lazy"><figcaption>Layout editor</figcaption></figure>
+    </div>
+  </section>
 
   <div class="cta">
     <p>Install on Windows (PowerShell, not as administrator):<br><code>irm https://raw.githubusercontent.com/AnirudhKaplish/deskdeck/main/setup.ps1 | iex</code></p>
