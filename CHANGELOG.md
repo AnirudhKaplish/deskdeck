@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.16 — 2026-11-19
+
+**Readability**
+- Aurora glass cards are darker and calmer, so the main value stands out: CPU, GPU, RAM and network numbers, gauges and
+  charts take their metric colour; labels and sub-lines are brighter; shortcut keys have a clear colour wash.
+
 ## 0.9.15 — 2026-11-19
 
 **New look**
