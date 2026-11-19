@@ -1,114 +1,92 @@
-<p align="center"><img src="agent/DeskDeck.Agent/deskdeck.ico" width="72" alt="DeskDeck icon"></p>
+<p align="center"><img src="docs/screenshots/icon.png" width="96" alt="DeskDeck icon"></p>
 
 <h1 align="center">DeskDeck</h1>
 
-<p align="center">
-  <b>English</b> ·
-  <a href="docs/README.tr.md">Türkçe</a> ·
-  <a href="docs/README.de.md">Deutsch</a> ·
-  <a href="docs/README.fr.md">Français</a> ·
-  <a href="docs/README.es.md">Español</a> ·
-  <a href="docs/README.it.md">Italiano</a> ·
-  <a href="docs/README.pt.md">Português</a> ·
-  <a href="docs/README.nl.md">Nederlands</a> ·
-  <a href="docs/README.pl.md">Polski</a> ·
-  <a href="docs/README.ru.md">Русский</a> ·
-  <a href="docs/README.zh.md">中文 (简体)</a>
-</p>
-
-<p align="center"><b>Turn an old Android phone into a desk panel for your computer.</b><br>
-PC stats, AI coding sessions, music and touch controls over USB or Wi-Fi.<br>
-Windows, Linux and macOS. No root, DeskDeck account or cloud service required.</p>
+<p align="center"><b>Give that old Android phone a second life as a glass dashboard for your computer.</b><br>
+Live PC stats, AI coding quotas, music and one-tap shortcuts, over USB or plain Wi-Fi.<br>
+Windows · Linux · macOS. No root, no account, no cloud.</p>
 
 <p align="center">
-  <a href="https://anirudhkaplish.github.io/deskdeck/"><b>Try the live demo</b></a> ·
+  <a href="https://anirudhkaplish.github.io/deskdeck/"><b>▶ Try it in your browser</b></a> ·
   <a href="https://github.com/AnirudhKaplish/deskdeck/releases/latest"><b>Download</b></a> ·
-  <a href="#quick-start"><b>Quick start</b></a>
+  <a href="#get-started"><b>Get started</b></a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/AnirudhKaplish/deskdeck/actions/workflows/build.yml"><img src="https://github.com/AnirudhKaplish/deskdeck/actions/workflows/build.yml/badge.svg" alt="Build status"></a>
-  <a href="https://github.com/AnirudhKaplish/deskdeck/releases/latest"><img src="https://img.shields.io/github/v/release/AnirudhKaplish/deskdeck?label=release" alt="Latest release"></a>
-  <img src="https://img.shields.io/badge/Windows%20%C2%B7%20Linux%20%C2%B7%20macOS-.NET%2010-512bd4" alt="Windows, Linux, macOS; .NET 10">
-  <img src="https://img.shields.io/badge/Android-7%2B-3ddc84" alt="Android 7+">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT license"></a>
+  <a href="https://github.com/AnirudhKaplish/deskdeck/releases/latest"><img src="https://img.shields.io/github/v/release/AnirudhKaplish/deskdeck?label=release&color=8b5cf6" alt="Latest release"></a>
+  <img src="https://img.shields.io/badge/Android-7%2B-2dd4bf" alt="Android 7+">
+  <img src="https://img.shields.io/badge/Windows%20%C2%B7%20Linux%20%C2%B7%20macOS-.NET%2010-8b5cf6" alt="Windows, Linux, macOS; .NET 10">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-2dd4bf" alt="MIT license"></a>
 </p>
 
-<p align="center"><img src="docs/hero-0.6.png" width="900" alt="DeskDeck on three phones showing automation, home and planner pages"><br>
-<sub>Example layouts with demo data.</sub></p>
+<p align="center"><img src="docs/screenshots/aurora-panel.png" width="900" alt="The DeskDeck panel: clock, now playing and PC metrics on an aurora glass background"><br>
+<sub>The default Aurora glass theme, with demo data.</sub></p>
 
-DeskDeck pairs a full-screen **Android app** with a small **desktop agent**. Build your panel in a browser-based
-visual editor: **121 widgets**, **30 templates**, multiple pages and a live preview. Connect several phones with
-their own layouts, or switch one phone between paired computers.
+## What it is
 
-## What you can do
+Two small pieces that talk to each other:
 
-| Use it for | What appears on the phone |
+- an **Android app** that fills the phone screen with your panel, and
+- a **desktop agent** that reads your computer's stats and runs your shortcuts.
+
+You design the panel in a browser: **121 widgets**, **30 templates**, a 12 × 6 grid and a live preview.
+One agent can serve several phones, each with its own layout.
+
+<p align="center"><img src="docs/screenshots/aurora-panel-2.png" width="900" alt="A dashboard page with gauges, now playing and a grid of shortcut buttons"></p>
+
+## Why you might want one
+
+| | |
 |---|---|
-| **PC monitoring** | CPU, GPU, RAM, disks, network and ping; charts, GPU details and process controls |
-| **AI coding** | Claude, Codex and Antigravity quotas, reset times and burn-rate forecasts; local Claude Code and Codex sessions; GitHub reviews and CI status |
-| **Touch controls** | App and URL shortcuts, key combinations and macros; application audio, microphone, media, OBS and system controls through [Control Deck](docs/CONTROL-DECK.md) |
-| **Everyday use** | Now Playing, internet radio, clocks, weather, calendars, notes, checklists, pomodoro and timers |
-| **Automation** | Webhook values and notifications, Home Assistant controls and rules that react to activity on the computer |
+| **Watch your machine** | CPU, GPU, RAM, disks, network, ping, temperatures, fans, charts and a process list |
+| **Keep an eye on AI coding** | Claude, Codex and Antigravity quotas with burn-rate forecasts, live Claude Code and Codex sessions, GitHub reviews and CI. Answer Claude Code's permission prompts with **Allow** or **Deny** from the phone |
+| **Tap instead of alt-tab** | Launch apps and URLs, send key combos and macros, change volume, mic, brightness, OBS scenes and tasks through [Control Deck](docs/CONTROL-DECK.md) |
+| **Everyday glanceables** | Now Playing, internet radio, clocks, weather, calendars, notes, checklists, timers |
+| **Automate** | Push values and notifications with one `curl`, drive Home Assistant, and let rules switch pages when a call or a waiting AI session needs you |
 
-Tap an AI session for its model, timing and token details. Opt in to Claude Code permission prompts to answer
-**Allow** or **Deny** from the phone. Optional [CodexBar integration](docs/GUIDE.md#widgets) adds quota providers
-and a cost overview.
+## Get started
 
-<p align="center"><a href="docs/tour-0.6.mp4"><img src="docs/tour-0.6.gif" width="780" alt="DeskDeck tour showing notifications, a Claude Code permission prompt and automatic page switching"></a><br>
-<sub>A tour with demo data: notifications, permission prompts and automatic page switching. <a href="docs/tour-0.6.mp4">Watch the MP4</a></sub></p>
+You need an **Android 7+ phone** and a computer. Release agents bundle .NET, so there is nothing else to install.
 
-## Quick start
+**1. Install the desktop agent**
 
-You need an **Android 7+ phone** and a supported computer. USB uses a data cable and USB debugging; Wi-Fi pairing
-works without either. Release agents include .NET, so you do not need to install the runtime.
-
-### 1. Install the desktop agent
-
-**Windows 10/11 x64** — paste into a normal PowerShell window:
+Windows 10/11 (normal PowerShell window):
 
 ```powershell
 irm https://raw.githubusercontent.com/AnirudhKaplish/deskdeck/main/setup.ps1 | iex
 ```
 
-**Linux or macOS** — run as your own user:
+Linux or macOS:
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/AnirudhKaplish/deskdeck/main/setup.sh | bash
 ```
 
-Setup downloads the latest release, checks its SHA-256 checksum, offers missing dependencies and start-at-login,
-and opens the settings at <http://127.0.0.1:8765>. It can also install the Android app over USB.
-Run setup again to update or repair the installation while keeping settings and pairings.
+Setup downloads the latest release, verifies its SHA-256 checksum, offers start-at-login, installs the phone app over
+USB if you like, and opens the editor at <http://127.0.0.1:8765>. Run it again any time to update or repair; your
+settings and pairings stay. Read the scripts first if you prefer: [setup.ps1](setup.ps1) · [setup.sh](setup.sh).
 
-> **Windows signing:** release agents are currently unsigned.
-> SmartScreen or antivirus software may warn or block them. See the [code signing policy](#code-signing-policy)
-> and [installation warnings](docs/SETUP.md#quick-start). USB debugging should be authorized only on computers you trust.
+> Windows builds are unsigned for now, so SmartScreen or antivirus may complain. See the
+> [code signing policy](#code-signing-policy) and [install warnings](docs/SETUP.md#quick-start).
 
-Read the scripts before running them: [Windows](setup.ps1) · [Linux/macOS](setup.sh).
-The [installation guide](docs/SETUP.md) covers options, dependencies, install paths, troubleshooting and uninstalling.
+**2. Connect the phone**
 
-### 2. Connect the phone
-
-| USB | Wi-Fi only |
+| Over USB | Over Wi-Fi only |
 |---|---|
-| Enable **Developer options → USB debugging**, connect a data cable and accept the phone's authorization prompt. Let setup install the app, or use **Settings → General → Install the phone app**. | Install the APK from the [latest release](https://github.com/AnirudhKaplish/deskdeck/releases/latest). Enable **Settings → General → Wi-Fi & Tailscale**, restart the agent when asked, then choose **Pair a phone over Wi-Fi**. Scan the pairing QR code and confirm the matching check code. |
-| Wakes and opens the panel on connection; supports app updates over adb. | No adb or developer options needed; install app updates manually unless you later configure USB. |
+| Turn on **Developer options → USB debugging**, plug in a data cable, accept the prompt. Setup (or **Settings → General → Install the phone app**) installs the app and the panel opens by itself. | Install the APK from the [latest release](https://github.com/AnirudhKaplish/deskdeck/releases/latest). In **Settings → General** enable **Wi-Fi & Tailscale**, restart the agent, choose **Pair a phone over Wi-Fi**, scan the QR code and confirm the check code. |
 
-For automatic USB/Wi-Fi fallback, enable Wi-Fi and connect the phone over USB once.
-[Connection details and Tailscale setup →](docs/SETUP.md#wi-fi--tailscale)
+Connect over USB once with Wi-Fi enabled and DeskDeck falls back between the two automatically.
+[Connection details and Tailscale →](docs/SETUP.md#wi-fi--tailscale)
 
-### 3. Make it yours
+**3. Make it yours**
 
-Open <http://127.0.0.1:8765> (or double-click the Windows tray icon). Under **Pages**, choose a template, drag and
-resize widgets, then **Save**. Use **Live preview** to see unsaved edits with live data.
-Swipe, tap the page dots or use the phone's volume keys to move between pages.
+Open <http://127.0.0.1:8765> (or double-click the tray icon on Windows), pick a template under **Pages**, drag and
+resize widgets, press **Save**. Swipe, tap the page dots or use the volume keys on the phone to move around.
 
 <details>
-<summary><b>Other installation methods</b></summary>
+<summary><b>Other ways to install</b></summary>
 
-- **Manual download:** unzip the agent for your system from the [release page](https://github.com/AnirudhKaplish/deskdeck/releases/latest)
-  and run it. Install the APK on the phone. Checksums and build provenance accompany the release assets.
+- **Manual:** unzip the agent for your system from the [releases](https://github.com/AnirudhKaplish/deskdeck/releases/latest) and run it; install the APK on the phone. Checksums come with every release.
 - **Scoop (Windows):**
 
   ```powershell
@@ -116,101 +94,93 @@ Swipe, tap the page dots or use the phone's volume keys to move between pages.
   scoop install main/adb deskdeck/deskdeck
   ```
 
-- **From source:** see the [installation guide](docs/SETUP.md#other-ways-to-install) and [development guide](docs/DEVELOPMENT.md).
-- **winget:** manifests are prepared in [packaging/winget](packaging/winget); see the installation guide for details.
+- **From source:** see the [install guide](docs/SETUP.md#other-ways-to-install) and the [development guide](docs/DEVELOPMENT.md).
 
 </details>
 
-## Pages & templates
+## The editor
 
-Start with Home, System, AI quotas, Sessions, Music, Planner, Automation or a Control Deck template, then adapt the
-12 × 6 grid to your phone. Portrait and landscape layouts are supported. Smart Stack puts up to 12 widgets in one slot.
+<p align="center"><img src="docs/screenshots/aurora-editor.png" width="900" alt="The layout editor with the page list and a drag-and-drop grid"></p>
+
+Every page is a 12 × 6 grid, portrait or landscape. Smart Stack packs up to 12 widgets into one slot. Fonts, sizes,
+spacing, corners and surfaces can be changed globally, per page or per widget: see the [appearance guide](docs/APPEARANCE.md).
+Prefer another mood? Settings also offers AMOLED black, Midnight, Warm and Graphite themes.
+
+More pages, with demo data:
 
 | Home | AI sessions |
 |---|---|
 | ![Clock, weather, media and PC metrics](docs/screenshots/home.png) | ![Coding sessions and GitHub activity](docs/screenshots/work.png) |
-| **System** | **Layout editor** |
-| ![CPU, GPU, memory and network charts](docs/screenshots/system.png) | ![Pages and widget settings in the visual editor](docs/screenshots/settings-editor.png) |
+| **System** | **Control Deck** |
+| ![CPU, GPU, memory and network charts](docs/screenshots/system.png) | ![Shortcut tiles](docs/screenshots/deck.png) |
 
-Screenshots use demo data. [Browse the template gallery and widgets](docs/GUIDE.md#pages--templates).
-Change fonts, size, spacing, corners and surfaces globally or for one page or widget with the [appearance guide](docs/APPEARANCE.md).
-
-## Platform support
+## What runs where
 
 | | Windows | Linux | macOS |
 |---|---|---|---|
-| Release builds | x64 | x64 / ARM64, glibc | Apple silicon / Intel |
+| Builds | x64 | x64 / ARM64 (glibc) | Apple silicon / Intel |
 | CPU, RAM, disks, network, processes | ✓ | ✓ | ✓ |
-| GPU data | Windows counters; NVIDIA via `nvidia-smi`; extra sensors via [LibreHardwareMonitor](docs/SETUP.md#librehardwaremonitor-on-windows) | NVIDIA / AMD; Intel clock | Apple silicon, when exposed by macOS |
-| Media | System media sessions | `playerctl` | `nowplaying-cli`; Spotify / Music fallback |
-| Volume | Native | `wpctl` / `pactl` | System output; availability varies by device |
-| Agent interface | Tray icon + browser settings | Browser settings | Browser settings |
+| GPU | Windows counters, NVIDIA via `nvidia-smi`, more via [LibreHardwareMonitor](docs/SETUP.md#librehardwaremonitor-on-windows) | NVIDIA / AMD, Intel clock | Apple silicon when macOS exposes it |
+| Media | System media sessions | `playerctl` | `nowplaying-cli`, Spotify / Music fallback |
+| Volume | Native | `wpctl` / `pactl` | System output (varies by device) |
+| Agent UI | Tray icon + browser | Browser | Browser |
 
-Widgets depend on the host's hardware, installed tools and permissions. Advanced Control Deck features have
-[their own platform requirements](docs/CONTROL-DECK.md). Windows ARM and musl Linux (such as Alpine) do not have
-release builds. See the [full compatibility table](docs/SETUP.md#what-works-where).
+Widgets depend on your hardware, installed tools and permissions. Windows ARM and musl Linux (Alpine) have no builds.
+The [full compatibility table](docs/SETUP.md#what-works-where) has the details.
 
-## Documentation
+## Docs
 
-| Guide | Contents |
+| Guide | What is in it |
 |---|---|
-| [Installation and connections](docs/SETUP.md) | Setup options, warnings, manual and source installs, USB, Wi-Fi, Tailscale, updates, uninstall and troubleshooting |
-| [User guide](docs/GUIDE.md) | Template gallery, widgets, AI integrations, editor, Claude Code prompts, webhooks and automation rules |
-| [Appearance](docs/APPEARANCE.md) | Fonts, surfaces, presets, inheritance and live preview |
-| [Control Deck](docs/CONTROL-DECK.md) | Audio, media, OBS, shortcuts, tasks, protocols, dependencies and platform limits |
-| [Discord widget](docs/DISCORD.md) | Creating the Discord application, connecting it, controls and troubleshooting |
-| [Development](docs/DEVELOPMENT.md) | Architecture, local demo, builds, tests, widget sources and isolated agent runs |
-| [Contributing](CONTRIBUTING.md) | Contribution scope, review expectations, privacy and required checks |
-| [Changelog](CHANGELOG.md) | Release history and unreleased changes |
-| [Release checklist](docs/RELEASING.md) | Maintainer build, signing and publication workflow |
+| [Install & connect](docs/SETUP.md) | Options, warnings, USB, Wi-Fi, Tailscale, updates, uninstall, troubleshooting |
+| [User guide](docs/GUIDE.md) | Template gallery, widgets, AI integrations, Claude Code prompts, webhooks, rules |
+| [Appearance](docs/APPEARANCE.md) | Fonts, surfaces, presets, inheritance |
+| [Control Deck](docs/CONTROL-DECK.md) | Audio, media, OBS, shortcuts, tasks, platform limits |
+| [Discord widget](docs/DISCORD.md) | Connecting a Discord application |
+| [Development](docs/DEVELOPMENT.md) | Architecture, local demo, builds, tests |
+| [Contributing](CONTRIBUTING.md) · [Changelog](CHANGELOG.md) · [Releasing](docs/RELEASING.md) | For contributors and maintainers |
 
-The [UMIDIGI BISON extras](extras/umidigi-bison) contain the reversible, no-root tune-up used on the original development phone.
+The [UMIDIGI BISON extras](extras/umidigi-bison) hold a reversible, no-root tune-up for one phone.
 
-## Security & privacy
+## Privacy and security
 
-The desktop settings server listens on `127.0.0.1:8765`; USB reaches it through `adb reverse`.
-Optional Wi-Fi uses HTTPS on port 8766 with a pinned certificate and a paired key. Settings and pairing endpoints
-stay local. The phone requests configured actions by ID; commands and integration credentials stay on the computer.
+The editor listens on `127.0.0.1:8765` only; USB reaches it through `adb reverse`. Optional Wi-Fi uses HTTPS on port
+8766 with a pinned certificate and a paired key. The phone asks for actions by ID, so commands and credentials never
+leave the computer.
 
-DeskDeck has no telemetry, analytics or accounts of its own. Optional widgets and integrations contact external
-services for weather, quotas, GitHub and other data, and the agent checks GitHub for updates.
-Supported public feeds can fall back through the agent over USB when the phone has no internet.
-The [privacy policy](PRIVACY.md) lists outbound connections and how to disable them.
-Read the [security details](docs/GUIDE.md#security--privacy). To report a vulnerability, follow [SECURITY.md](SECURITY.md).
+DeskDeck has no telemetry, analytics or accounts. Optional widgets contact services for weather, quotas and GitHub data,
+and the agent checks GitHub for updates. [PRIVACY.md](PRIVACY.md) lists every outbound connection and how to switch
+it off. Found a vulnerability? See [SECURITY.md](SECURITY.md).
 
-## Development
+## Build it yourself
 
-The agent uses **.NET 10**; the Android app uses **Kotlin and a WebView** with plain JavaScript widgets.
-For Android builds, install **JDK 17** and **Android SDK Platform 35** (the SDK the app is built with; the app itself
-runs on Android 7.0, API 24, and later).
-Preview the panel and editor from source with Python 3, using simulated data:
+The agent is **.NET 10**; the app is **Kotlin + a WebView** running plain-JavaScript widgets (JDK 17, Android SDK 35;
+the app runs on Android 7+). Try the panel and editor with simulated data:
 
 ```sh
 python tools/demo-server.py
 ```
 
-Open <http://127.0.0.1:8790/panel/> or <http://127.0.0.1:8790/settings/>.
-See [development commands](docs/DEVELOPMENT.md#development) for running the agent, building the APK and testing changes.
-Contributions are welcome; start with [CONTRIBUTING.md](CONTRIBUTING.md).
+Then open <http://127.0.0.1:8790/panel/> or <http://127.0.0.1:8790/settings/>.
+[Development commands →](docs/DEVELOPMENT.md#development) · [Contributing →](CONTRIBUTING.md)
 
 ## Code signing policy
 
-- **Windows agent:** releases are currently unsigned. Every release publishes SHA-256 checksums and a build-provenance attestation.
-  Bundled runtime and library notices are in [THIRD-PARTY-NOTICES.txt](agent/DeskDeck.Agent/THIRD-PARTY-NOTICES.txt).
-- **Android app:** release APKs are signed with the project's own signing key.
-- **Maintainer:** [AnirudhKaplish](https://github.com/AnirudhKaplish). Pull requests are reviewed before merging.
-- **Privacy:** see the [privacy policy](PRIVACY.md).
+- **Windows agent:** unsigned for now. Each release ships SHA-256 checksums and a build-provenance attestation. Bundled runtime and library notices: [THIRD-PARTY-NOTICES.txt](agent/DeskDeck.Agent/THIRD-PARTY-NOTICES.txt).
+- **Android app:** release APKs are signed with the project's own key.
+- **Maintainer:** [AnirudhKaplish](https://github.com/AnirudhKaplish).
 
-## Star History
+## Credits and license
+
+DeskDeck started from the MIT-licensed open-source project PhoneBox and has since been restyled and extended
+(Aurora glass look, new icon, Wi-Fi pairing page, setup fixes). The original copyright notice stays in [LICENSE](LICENSE),
+as the MIT license requires. DeskDeck is released under the [MIT license](LICENSE).
+
+If it earns a place on your desk, a ⭐ on GitHub helps others find it.
 
 <a href="https://www.star-history.com/#AnirudhKaplish/deskdeck&Date">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=AnirudhKaplish/deskdeck&type=Date&theme=dark">
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=AnirudhKaplish/deskdeck&type=Date">
     <img alt="Star history of AnirudhKaplish/deskdeck" src="https://api.star-history.com/svg?repos=AnirudhKaplish/deskdeck&type=Date">
   </picture>
 </a>
-
-## License
-
-[MIT](LICENSE)
