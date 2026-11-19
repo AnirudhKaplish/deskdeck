@@ -88,7 +88,17 @@ function Invoke-Native([string]$File, [string[]]$Arguments) {
     [pscustomobject]@{ Code = $code; Output = @($output) }
 }
 
-function Get-Download([string]$Url, [string]$Path) {
+function Get-Download([string]$Url, [string]$Path, [switch]$Bar) {
+    # Big downloads show a progress bar: curl.exe draws it itself, so it stays fast (PowerShell's own bar slows Windows PowerShell 5.1 down).
+    if ($Bar -and [Environment]::UserInteractive) {
+        $curlBar = Get-Command curl.exe -ErrorAction SilentlyContinue | Select-Object -First 1
+        if ($curlBar) {
+            Remove-Item -LiteralPath $Path -Force -ErrorAction SilentlyContinue
+            & $curlBar.Source -fL --retry 2 --progress-bar -A 'deskdeck-setup' -o $Path $Url
+            if ($LASTEXITCODE -eq 0 -and (Test-Path -LiteralPath $Path) -and (Get-Item -LiteralPath $Path).Length -gt 0) { return }
+            Remove-Item -LiteralPath $Path -Force -ErrorAction SilentlyContinue
+        }
+    }
     try {
         Invoke-WebRequest -UseBasicParsing -Uri $Url -OutFile $Path -Headers @{ 'User-Agent' = 'deskdeck-setup' }
         return
@@ -361,7 +371,7 @@ function Install-DeskDeck {
         $zip = Join-Path $temp $zipName
         try { Get-Download "$base/SHA256SUMS-$ver.txt" $sums } catch { throw "Could not download release $ver from $base. $($_.Exception.Message)" }
         Write-Info "$zipName (about 65 MB) ..."
-        Get-Download "$base/$zipName" $zip
+        Get-Download "$base/$zipName" $zip -Bar
         Assert-Checksum $zip $sums
         Test-Provenance $zip
         Write-Info 'The agent is not code-signed yet (releases are unsigned). Windows SmartScreen'
@@ -462,7 +472,7 @@ function Install-DeskDeck {
                     # installed and stopped for the update) still starts below.
                     try {
                         $apk = Join-Path $temp "DeskDeck-$ver.apk"
-                        Get-Download "$base/DeskDeck-$ver.apk" $apk
+                        Get-Download "$base/DeskDeck-$ver.apk" $apk -Bar
                         Assert-Checksum $apk $sums
                         $phoneDone = Install-PhoneApp $adb $apk $device
                     } catch {
