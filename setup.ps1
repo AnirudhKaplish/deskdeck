@@ -89,7 +89,22 @@ function Invoke-Native([string]$File, [string[]]$Arguments) {
 }
 
 function Get-Download([string]$Url, [string]$Path) {
-    Invoke-WebRequest -UseBasicParsing -Uri $Url -OutFile $Path -Headers @{ 'User-Agent' = 'deskdeck-setup' }
+    try {
+        Invoke-WebRequest -UseBasicParsing -Uri $Url -OutFile $Path -Headers @{ 'User-Agent' = 'deskdeck-setup' }
+        return
+    } catch {
+        $first = $_.Exception.Message
+    }
+    # Windows PowerShell's web client can fail on GitHub's download host (TLS renegotiation, some antivirus or proxy setups)
+    # although the browser and curl.exe work. curl.exe ships with Windows 10 1803 and later, so try it before giving up.
+    $curl = Get-Command curl.exe -ErrorAction SilentlyContinue | Select-Object -First 1
+    if ($curl) {
+        Remove-Item -LiteralPath $Path -Force -ErrorAction SilentlyContinue
+        & $curl.Source -fsSL --retry 2 -A 'deskdeck-setup' -o $Path $Url 2>$null
+        if ($LASTEXITCODE -eq 0 -and (Test-Path -LiteralPath $Path) -and (Get-Item -LiteralPath $Path).Length -gt 0) { return }
+        Remove-Item -LiteralPath $Path -Force -ErrorAction SilentlyContinue
+    }
+    throw "Could not download $Url ($first)"
 }
 
 function Get-LatestVersion {
@@ -344,7 +359,7 @@ function Install-DeskDeck {
         $zipName = "DeskDeckAgent-$ver-win-x64.zip"
         $sums = Join-Path $temp "SHA256SUMS-$ver.txt"
         $zip = Join-Path $temp $zipName
-        try { Get-Download "$base/SHA256SUMS-$ver.txt" $sums } catch { throw "Release $ver was not found ($base). $($_.Exception.Message)" }
+        try { Get-Download "$base/SHA256SUMS-$ver.txt" $sums } catch { throw "Could not download release $ver from $base. $($_.Exception.Message)" }
         Write-Info "$zipName (about 65 MB) ..."
         Get-Download "$base/$zipName" $zip
         Assert-Checksum $zip $sums
