@@ -1,6 +1,18 @@
 # Changelog
 
-## Unreleased
+## 0.9.15 — 2026-11-19
+
+**New look**
+- **Aurora glass** is the new default theme: frosted-glass cards with gradient edges, a slowly drifting violet, teal and pink
+  background (still when the phone asks for reduced motion) and a gradient clock. AMOLED, Midnight, Warm and Graphite are unchanged.
+- The settings editor, the live demo website and the Wi-Fi pairing page share the new look.
+- New app icon: a landscape panel with an aurora ribbon (Android launcher, Windows tray and favicon).
+  `tools/make-icon.ps1` is replaced by `tools/make-icon.py`.
+- Rewritten README.
+
+**New**
+- A one-time popup on Windows asks for a GitHub star once the phone connects. It checks through your own GitHub CLI when
+  signed in and stays quiet if you already starred. See the privacy policy.
 
 **New widget**
 - **Dictation**: tap the microphone and speak, and the text is typed into the app in front on the PC. The phone's own

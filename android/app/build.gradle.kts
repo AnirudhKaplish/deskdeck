@@ -17,8 +17,8 @@ android {
         applicationId = "com.anirudhkaplish.deskdeck.deskpanel"
         minSdk = 24
         targetSdk = 35
-        versionCode = 35
-        versionName = "0.9.14"
+        versionCode = 36
+        versionName = "0.9.15"
     }
 
     signingConfigs {
