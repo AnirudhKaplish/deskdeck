@@ -1,0 +1,39 @@
+/* Aurora glass: DeskDeck's own look. Applies to the default theme; AMOLED, Midnight, Warm and Graphite keep theirs. */
+body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="warm"]):not([data-theme="graphite"]) {
+  --bg: #0a0716;
+  --card: linear-gradient(160deg, rgba(255,255,255,.085), rgba(255,255,255,.025));
+  --card-hi: rgba(255,255,255,.11);
+  --line: rgba(255,255,255,.12);
+  --muted: #a39fbd;
+  --dim: #6c6788;
+  --cpu: #5eead4; --gpu: #bef264; --ram: #c4b5fd; --net: #fdba74; --up: #7dd3fc;
+  --ambient: 167, 139, 250;
+  background: var(--bg);
+}
+body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="warm"]):not([data-theme="graphite"])::before {
+  background:
+    radial-gradient(55% 70% at 85% 8%, rgba(139, 92, 246, .34), transparent 70%),
+    radial-gradient(50% 65% at 8% 95%, rgba(45, 212, 191, .24), transparent 70%),
+    radial-gradient(40% 50% at 55% 60%, rgba(244, 114, 182, .12), transparent 75%);
+  animation: aurora-drift 40s ease-in-out infinite alternate;
+}
+@keyframes aurora-drift { from { transform: translate3d(-2%, -1%, 0) scale(1.04); } to { transform: translate3d(2%, 2%, 0) scale(1.1); } }
+@media (prefers-reduced-motion: reduce) { body::before { animation: none !important; } }
+
+body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="warm"]):not([data-theme="graphite"]) .card {
+  background:
+    linear-gradient(160deg, rgba(255,255,255,.09), rgba(255,255,255,.02)) padding-box,
+    linear-gradient(150deg, rgba(196,181,253,.55), rgba(255,255,255,.06) 40%, rgba(94,234,212,.4)) border-box;
+  border: 1px solid transparent;
+  border-radius: clamp(14px, 9cqmin, 26px);
+  box-shadow: 0 10px 30px rgba(8, 4, 24, .45), inset 0 1px 0 rgba(255,255,255,.08);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+}
+/* The big clock gets the aurora gradient. */
+body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="warm"]):not([data-theme="graphite"]) .clock {
+  background: linear-gradient(100deg, #fff 10%, #ddd6fe 55%, #99f6e4 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+  font-weight: 200; letter-spacing: -.02em;
+}
+.clock .sec, .clock .ap { -webkit-text-fill-color: var(--muted); }
+body:not([data-theme="amoled"]):not([data-theme="midnight"]):not([data-theme="warm"]):not([data-theme="graphite"]) .dot.on { background: #5eead4; box-shadow: 0 0 10px rgba(94, 234, 212, .8); }

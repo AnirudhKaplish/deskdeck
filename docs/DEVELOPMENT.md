@@ -107,7 +107,7 @@ node media.js tour
 node media.js hero
 ```
 
-Install the browser tooling above first. The tour also needs FFmpeg. Run `pwsh tools/make-icon.ps1` from the
+Install the browser tooling above first. The tour also needs FFmpeg. Run `python3 tools/make-icon.py` from the
 repository root to regenerate the application icon.
 
 ### Source layout

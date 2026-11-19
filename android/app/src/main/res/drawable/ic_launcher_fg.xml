@@ -4,9 +4,9 @@
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
-    <!-- control deck: a 2 x 2 grid of tiles -->
-    <path android:pathData="M31,25h14a6,6 0,0 1,6 6v14a6,6 0,0 1,-6 6h-14a6,6 0,0 1,-6 -6v-14a6,6 0,0 1,6 -6z" android:fillColor="#2DD4BF" />
-    <path android:pathData="M63,25h14a6,6 0,0 1,6 6v14a6,6 0,0 1,-6 6h-14a6,6 0,0 1,-6 -6v-14a6,6 0,0 1,6 -6z" android:fillColor="#76B900" />
-    <path android:pathData="M31,57h14a6,6 0,0 1,6 6v14a6,6 0,0 1,-6 6h-14a6,6 0,0 1,-6 -6v-14a6,6 0,0 1,6 -6z" android:fillColor="#A78BFA" />
-    <path android:pathData="M63,57h14a6,6 0,0 1,6 6v14a6,6 0,0 1,-6 6h-14a6,6 0,0 1,-6 -6v-14a6,6 0,0 1,6 -6z" android:fillColor="#F59E0B" />
+    <!-- a landscape panel with an aurora ribbon -->
+    <path android:pathData="M30,34h48a8,8 0,0 1,8 8v24a8,8 0,0 1,-8 8h-48a8,8 0,0 1,-8 -8v-24a8,8 0,0 1,8 -8z" android:fillColor="#2B2150" />
+    <path android:pathData="M22,64C36,50 46,60 58,50C68,42 76,44 86,40v26a8,8 0,0 1,-8 8h-48a8,8 0,0 1,-8 -8z" android:fillColor="#2DD4BF" />
+    <path android:pathData="M22,70C34,58 48,68 60,58C70,50 78,54 86,48v18a8,8 0,0 1,-8 8h-48a8,8 0,0 1,-8 -8z" android:fillColor="#A78BFA" />
+    <path android:pathData="M30,34h48a8,8 0,0 1,8 8v24a8,8 0,0 1,-8 8h-48a8,8 0,0 1,-8 -8v-24a8,8 0,0 1,8 -8z" android:strokeColor="#DDD6FE" android:strokeWidth="3" android:fillColor="#00000000" />
 </vector>
