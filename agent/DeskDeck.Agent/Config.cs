@@ -86,9 +86,9 @@ public sealed class AgentConfig
 
 public sealed class WeatherConfig
 {
-    public string City { get; set; } = "Tallinn";
-    public double Lat { get; set; } = 59.437;
-    public double Lon { get; set; } = 24.745;
+    public string City { get; set; } = "Delhi";
+    public double Lat { get; set; } = 28.6139;
+    public double Lon { get; set; } = 77.209;
 }
 
 public sealed class PingConfig

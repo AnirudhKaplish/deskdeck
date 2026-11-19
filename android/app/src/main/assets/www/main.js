@@ -52,7 +52,7 @@ export const FALLBACK_PAGES = [{
 }];
 
 export const DEFAULT_CFG = {
-  weather: { city: 'Tallinn', lat: 59.437, lon: 24.745 },
+  weather: { city: 'Delhi', lat: 28.6139, lon: 77.209 },
   night: { enabled: true, start: '00:30', end: '07:30', brightness: 0.02 },
   display: { showSeconds: true, idleReturnSec: 90, vibrate: true, volumeKeys: true },
   pages: FALLBACK_PAGES,
