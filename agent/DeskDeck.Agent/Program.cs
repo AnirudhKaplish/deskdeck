@@ -683,6 +683,37 @@ app.MapPost("/api/media/{action}", async (string action, long? ms, MediaMonitor 
     return outcome.Ok ? Results.Json(new { ok = true, media = outcome.Media }) : Results.BadRequest();
 });
 
+// Brightness slider: target=phone sets the USB-connected phone's screen (adb), target=pc the computer's built-in display (Windows laptops; external monitors keep using the Display brightness widget).
+app.MapPost("/api/brightness", async (string? target, int level, AdbReverse adb, ConfigStore cfg) =>
+{
+    level = Math.Clamp(level, 0, 100);
+    try
+    {
+        if (target == "phone")
+        {
+            var tool = AdbReverse.FindAdb(cfg.Get().AdbPath);
+            if (tool is null || !adb.Connected) return Results.BadRequest(new { error = "no phone over USB" });
+            var raw = Math.Max(1, level * 255 / 100);
+            var psi = new System.Diagnostics.ProcessStartInfo(tool) { UseShellExecute = false, CreateNoWindow = true };
+            foreach (var a in new[] { "shell", "settings put system screen_brightness_mode 0 && settings put system screen_brightness " + raw }) psi.ArgumentList.Add(a);
+            using var pr = System.Diagnostics.Process.Start(psi)!;
+            await pr.WaitForExitAsync(new CancellationTokenSource(5000).Token);
+            return pr.ExitCode == 0 ? Results.Ok(new { level }) : Results.BadRequest();
+        }
+        if (target == "pc" && OperatingSystem.IsWindows())
+        {
+            var psi = new System.Diagnostics.ProcessStartInfo("powershell.exe") { UseShellExecute = false, CreateNoWindow = true };
+            foreach (var a in new[] { "-NoProfile", "-NonInteractive", "-Command",
+                $"(Get-CimInstance -Namespace root/WMI -ClassName WmiMonitorBrightnessMethods).WmiSetBrightness(1,{level})" }) psi.ArgumentList.Add(a);
+            using var pr = System.Diagnostics.Process.Start(psi)!;
+            await pr.WaitForExitAsync(new CancellationTokenSource(8000).Token);
+            return pr.ExitCode == 0 ? Results.Ok(new { level }) : Results.BadRequest();
+        }
+    }
+    catch { }
+    return Results.BadRequest();
+});
+
 app.MapPost("/api/volume", (int? level, string? op, AudioControl audio) =>
 {
     var ok = op switch

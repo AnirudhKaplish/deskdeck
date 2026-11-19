@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.9.18 — 2026-11-19
+
+- **Brightness slider** widget: drag to set the phone's screen (over USB) or the computer's built-in display (Windows laptops).
+- Weather now defaults to Delhi and the world clocks to Delhi, Dubai, London, New York and Tokyo (new installs only).
+
 ## 0.9.17 — 2026-11-19
 
 - The GitHub star popup is removed.

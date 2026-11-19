@@ -29,7 +29,7 @@ Two small pieces that talk to each other:
 - an **Android app** that fills the phone screen with your panel, and
 - a **desktop agent** that reads your computer's stats and runs your shortcuts.
 
-You design the panel in a browser: **121 widgets**, **30 templates**, a 12 × 6 grid and a live preview.
+You design the panel in a browser: **122 widgets**, **30 templates**, a 12 × 6 grid and a live preview.
 One agent can serve several phones, each with its own layout.
 
 <p align="center"><img src="docs/screenshots/aurora-panel-2.png" width="900" alt="A dashboard page with gauges, now playing and a grid of shortcut buttons"></p>
