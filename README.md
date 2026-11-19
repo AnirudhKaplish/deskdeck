@@ -42,6 +42,8 @@ Not mock-ups: DeskDeck running on a Windows laptop with live data.
 |---|---|
 | ![Home page with clock, weather, now playing, thermal status and live metric tiles](docs/screenshots/pc-home.jpg) | ![System page with processor, graphics, memory and network charts](docs/screenshots/pc-system.jpg) |
 
+![Shortcuts page with app tiles and slim laptop and phone brightness sliders](docs/screenshots/pc-shortcuts.jpg)
+
 ![The layout editor with the page list and a drag-and-drop grid](docs/screenshots/pc-editor.jpg)
 
 ## Why you might want one
